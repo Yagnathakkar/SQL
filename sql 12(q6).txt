@@ -1,0 +1,136 @@
+CREATE TABLE Department (
+    deptno INT PRIMARY KEY,
+    deptname VARCHAR(50)
+);
+
+CREATE TABLE Employee (
+    empno INT PRIMARY KEY,
+    empname VARCHAR(50),
+    salary DECIMAL(10, 2),
+    deptno INT REFERENCES Department(deptno)
+);
+
+INSERT INTO Department VALUES (1,'HR');
+
+INSERT INTO Department VALUES (2,'finance');
+
+INSERT INTO Department VALUES (3, 'Marketing');
+
+INSERT INTO Department VALUES (4, 'it');
+
+INSERT INTO Department VALUES (5,'operations');
+
+INSERT INTO Employee (empno, empname, salary, deptno) VALUES (101, 'John Doe', 50000, 1)
+
+INSERT INTO Employee (empno, empname, salary, deptno) VALUES (102, 'Jane Smith', 60000, 2)
+
+INSERT INTO Employee (empno, empname, salary, deptno) VALUES (103, 'Michael Johnson', 55000, 3)
+
+INSERT INTO Employee (empno, empname, salary, deptno) VALUES (104, 'Emily Brown', 70000, 1)
+
+INSERT INTO Employee (empno, empname, salary, deptno) VALUES (105, 'Robert Williams', 65000, 4)
+
+INSERT INTO Employee (empno, empname, salary, deptno) VALUES (106, 'Emma Jones', 48000, 2)
+
+INSERT INTO Employee (empno, empname, salary, deptno) VALUES (107, 'William Davis', 52000, 3)
+
+INSERT INTO Employee (empno, empname, salary, deptno) VALUES (108, 'Olivia Miller', 75000, 4)
+
+INSERT INTO Employee (empno, empname, salary, deptno) VALUES (109, 'James Wilson', 59000, 1)
+
+INSERT INTO Employee (empno, empname, salary, deptno) VALUES (110, 'Sophia Taylor', 63000, 2)
+
+INSERT INTO Employee (empno, empname, salary, deptno) VALUES (111, 'Benjamin Anderson', 68000, 3)
+
+INSERT INTO Employee (empno, empname, salary, deptno) VALUES (112, 'Isabella Thomas', 71000, 4)
+
+INSERT INTO Employee (empno, empname, salary, deptno) VALUES (113, 'Alexander Moore', 54000, 1)
+
+INSERT INTO Employee (empno, empname, salary, deptno) VALUES (114, 'Mia Jackson', 57000, 2)
+
+INSERT INTO Employee (empno, empname, salary, deptno) VALUES (115, 'Ethan White', 59000, 3)
+
+--------------------------------------------------------------------------
+
+select * from department
+
+select empname,salary from employee where salary<60000
+
+select empname,deptname from  employee 
+inner join department 
+on department.deptno = employee.deptno
+where deptname='it'
+
+select empname,deptname from  employee 
+inner join department 
+on department.deptno = employee.deptno
+where empname like 'j%'
+
+select * from department where deptno in(
+
+select deptno from employee
+group by deptno
+having count(*)>2)
+
+select empname,deptname,salary from  employee 
+inner join department 
+on department.deptno = employee.deptno
+where salary = (select max(salary) from employee) 
+
+UPDATE Employee SET salary = 65000 WHERE empno = 102;
+
+delete from Employee where empno=110;
+
+Insert into department (deptno, deptname) values (6,'sales')
+
+Insert into Employee (empno, empname,salary,deptno) values (116,'laura johnson',60000,3)
+
+SELECT * FROM employee WHERE salary IN (
+SELECT AVG(salary) FROM employee
+GROUP BY deptno);
+
+select sum(salary) from employee
+
+update employee set salary=salary+salary*0.1
+
+select * from employee
+where salary = (select min(salary) from employee)
+
+select count(empno) from employee
+
+select * from department where deptno in(
+
+select deptno from employee
+group by deptno
+having count(*)>3)
+
+select * from employee where deptno not in(
+
+select deptno from department 
+where deptname ='it')
+
+select empname,deptname from employee,department
+
+DELETE FROM Employee WHERE salary < 50000;
+
+select count(*),deptname from  employee 
+inner join department 
+on department.deptno = employee.deptno
+group by deptname
+
+select empname,deptname,salary
+from Employee
+inner join department
+on Employee.deptno = Department.deptno 
+order by salary
+
+
+
+
+
+
+
+
+
+
+
